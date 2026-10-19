@@ -1,0 +1,14 @@
+{
+  "name": "network-atlas-v3",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Dependency-free telecom topology atlas prototype",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-data.js",
+    "start": "node server.js",
+    "test": "node --test --test-reporter=spec",
+    "verify": "npm run generate && npm test"
+  },
+  "engines": { "node": ">=20" }
+}

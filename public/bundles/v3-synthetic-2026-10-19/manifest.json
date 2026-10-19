@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "bundleVersion": "v3-synthetic-2026-10-19",
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "byteOrder": "little-endian",
+  "nodeCount": 249,
+  "edgeCount": 327,
+  "markets": [
+    "ATL",
+    "BOS",
+    "DEN"
+  ],
+  "typeCodes": {
+    "nodes": {
+      "AMF": 1,
+      "SMF": 2,
+      "UPF": 3,
+      "PE": 10,
+      "AGG": 11,
+      "GNB": 20,
+      "CELL": 21
+    },
+    "edges": {
+      "PHYSICAL": 1,
+      "CARRIES": 2,
+      "CONTROLS": 3,
+      "DEPENDS_ON": 4,
+      "BACKUP": 5
+    },
+    "layers": {
+      "Core": 1,
+      "Transport": 2,
+      "RAN": 3
+    },
+    "health": {
+      "healthy": 0,
+      "degraded": 1,
+      "critical": 2,
+      "unknown": 3
+    }
+  },
+  "files": {
+    "nodes.bin": {
+      "bytes": 4000,
+      "sha256": "72dbc6a4092c0b9f897f875243387000ff52a65122f6d8d65d81fecf1c5f3c13",
+      "contentType": "application/octet-stream"
+    },
+    "positions.bin": {
+      "bytes": 3004,
+      "sha256": "bca80c4315286418504559dfb9a595c782ecc72809377a107e1fe6d1cea22776",
+      "contentType": "application/octet-stream"
+    },
+    "edges.bin": {
+      "bytes": 5248,
+      "sha256": "8718450545f36e096bf8513be85ea0d8a2a54e195d8b4912c0a86f0122fcec63",
+      "contentType": "application/octet-stream"
+    },
+    "adjacency-forward.bin": {
+      "bytes": 4224,
+      "sha256": "bb69ec34b12803edc88e0320ac1de46c0d7598daf3b49362ab2f4055c9919889",
+      "contentType": "application/octet-stream"
+    },
+    "adjacency-reverse.bin": {
+      "bytes": 4224,
+      "sha256": "999576be074449166dcaa633959ee5c518f5d4b040d61df58904ffde13811a03",
+      "contentType": "application/octet-stream"
+    },
+    "metadata.json": {
+      "bytes": 132980,
+      "sha256": "0d85da503e4e75e3dbd3de66944b685047fad573df315751b1962c4797e53b18",
+      "contentType": "application/json"
+    }
+  },
+  "formats": {
+    "header": "16 bytes: magic[4], schema u16, recordSize u16, count u32, auxiliary u32",
+    "nodes": "16-byte records: index u32, type u8, layer u8, health u8, flags u8, market u16, reserved u16, criticality f32",
+    "edges": "16-byte records: source u32, target u32, type u8, directed u8, status u8, reserved u8, weight f32",
+    "positions": "12-byte records: x/y/z float32",
+    "adjacency": "header auxiliary=reference count; offsets u32[nodeCount+1], then {neighbor u32, edgeIndex u32}[referenceCount]"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "sequence": 0,
+  "generatedAt": "2026-10-19T00:00:00.000Z",
+  "updates": [
+    {
+      "id": "ATL-AGG-003",
+      "health": "degraded",
+      "lossPct": 4.8
+    },
+    {
+      "id": "ATL-GNB-009",
+      "health": "critical",
+      "lossPct": 12.6
+    },
+    {
+      "id": "BOS-UPF-01",
+      "health": "degraded",
+      "latencyMs": 38
+    }
+  ]
+}
