@@ -1,23 +1,45 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Network Atlas v3</title><link rel="stylesheet" href="/styles.css"></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#060910">
+  <title>Network Atlas v3</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
 <body>
-  <header><div><span class="eyebrow">NETWORK OPERATIONS</span><h1>Network Atlas <b>v3</b></h1></div><div class="status"><i></i><span id="liveLabel">Loading graph bundle…</span></div></header>
-  <main>
-    <aside class="left-panel panel">
-      <label class="search"><span>⌕</span><input id="search" autocomplete="off" placeholder="Search AMF, router, gNB, cell…"><kbd>/</kbd></label>
+  <main id="app" data-view="atlas">
+    <canvas id="graph" aria-label="Interactive top-to-bottom telecom network atlas"></canvas>
+    <header class="topbar glass">
+      <button id="backToAtlas" class="back-button" hidden aria-label="Return to Atlas overview">← Atlas</button>
+      <div class="brand"><span class="eyebrow">NETWORK OPERATIONS</span><strong>Network Atlas <em>v3</em></strong></div>
+      <div class="live-status"><i></i><span id="liveLabel">Loading graph bundle…</span></div>
+    </header>
+    <aside class="hero-card glass" id="heroCard">
+      <span class="eyebrow">NETWORK ATLAS · SYNTHETIC DEMO</span>
+      <h1>Everything<br>connected.</h1>
+      <p id="counts">Loading topology…</p>
+      <label class="search"><span aria-hidden="true">⌕</span><input id="search" autocomplete="off" placeholder="Search AMF, router, gNB, cell…"><kbd>/</kbd></label>
       <div id="searchResults" class="results"></div>
-      <section><div class="section-title">View</div><div class="segmented"><button data-mode="constellation" class="active">Constellation</button><button data-mode="topology">Left → Right</button></div></section>
-      <section><div class="section-title">Relationship filters</div><div id="edgeFilters" class="checks"></div></section>
-      <section><div class="section-title">Live health</div><div class="legend"><span><i class="ok"></i>Healthy</span><span><i class="warn"></i>Degraded</span><span><i class="bad"></i>Critical</span></div></section>
-      <section class="snapshot"><span>Immutable bundle</span><strong id="bundleVersion">—</strong><small id="bundleSize">—</small></section>
+      <div class="hero-actions"><button id="filtersToggle" class="quiet-button">Relationship filters <span>⌄</span></button><button id="resetView" class="quiet-button">Reset view</button></div>
+      <div id="filterTray" class="filter-tray" hidden><div id="edgeFilters" class="checks"></div></div>
     </aside>
-    <section class="stage"><canvas id="graph" aria-label="Interactive telecom topology"></canvas><div class="stage-note"><span id="viewTitle">Constellation overview</span><small>Drag to rotate · Wheel to zoom · Click a node to inspect</small></div><div class="layer-labels" id="layerLabels"><span>CORE</span><span>TRANSPORT</span><span>RAN</span></div></section>
-    <aside class="right-panel panel">
-      <div class="section-title">Selected element</div><div id="emptySelection" class="empty"><div class="radar">◎</div><p>Select any network element to inspect typed dependencies and health.</p></div>
-      <div id="details" hidden><div class="node-heading"><span id="nodeType" class="pill"></span><h2 id="nodeName"></h2><code id="nodeId"></code></div><div id="healthBadge" class="health-badge"></div><dl id="metrics"></dl><div class="actions"><button id="expandUp">← Upstream</button><button id="expandDown">Downstream →</button><button id="expandMore">Expand +1 hop</button></div><div class="section-title">Visible dependencies</div><div id="connections" class="connections"></div></div>
+    <div class="layer-key" id="layerKey" aria-hidden="true"><span><i class="core"></i>CORE</span><span><i class="transport"></i>TRANSPORT</span><span><i class="ran"></i>RAN</span></div>
+    <section class="atlas-caption glass" id="atlasCaption"><span>Top-to-bottom network hierarchy</span><small>Single-click to inspect · Double-click to trace dependencies · Drag to orbit · Wheel to zoom</small></section>
+    <aside class="details-card glass" id="detailsCard" hidden>
+      <button class="close-button" id="closeDetails" aria-label="Close details">×</button><span class="eyebrow">SELECTED ELEMENT</span>
+      <div class="node-heading"><span id="nodeType" class="pill"></span><h2 id="nodeName"></h2><code id="nodeId"></code></div>
+      <div id="healthBadge" class="health-badge"></div><dl id="metrics"></dl>
+      <button id="investigate" class="primary-button">Open dependency view <span>↗</span></button>
+      <div class="section-title">Immediate relationships</div><div id="connections" class="connections"></div>
     </aside>
+    <section id="investigation" class="investigation" hidden aria-label="Focused dependency investigation">
+      <div class="investigation-head"><div><span class="eyebrow">DEPENDENCY INVESTIGATION</span><h2 id="investigationTitle">Selected network element</h2><p id="investigationSummary">Two-hop neighborhood</p></div><div class="direction-control glass" aria-label="Dependency direction"><button data-direction="downstream" class="active">Origin → Impact</button><button data-direction="upstream">Impact → Origin</button></div></div>
+      <div id="dependencyViewport" class="dependency-viewport"><svg id="dependencyEdges" aria-hidden="true"></svg><div id="dependencyColumns" class="dependency-columns"></div></div>
+      <div class="investigation-footer glass"><span><i class="healthy-dot"></i> Healthy</span><span><i class="degraded-dot"></i> Degraded</span><span><i class="critical-dot"></i> Critical</span><span class="footer-hint">Click a card to inspect · Double-click to refocus · Esc returns to Atlas</span></div>
+    </section>
+    <footer class="system-strip glass"><span id="bundleVersion">—</span><span id="bundleSize">—</span><a href="/api/status" target="_blank" rel="noreferrer">Graph API ↗</a></footer>
   </main>
-  <footer><span id="counts">—</span><span>Binary bundle + memory-resident graph API</span><a href="/api/status" target="_blank">API status ↗</a></footer>
   <script type="module" src="/app.js"></script>
-</body></html>
+</body>
+</html>

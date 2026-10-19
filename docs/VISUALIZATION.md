@@ -2,9 +2,9 @@
 
 ## Implemented interaction model
 
-The constellation projects precomputed xyz coordinates onto Canvas 2D, with rotation, tilt, zoom, health glow, typed edge colors, selection, and local filters. The left-to-right view constrains columns to Core, Transport, and RAN while retaining market-relative vertical grouping. Directed arrows appear in this mode.
+The default Atlas is a full-screen, top-to-bottom hierarchy: Core forms the crown, provider edge and aggregation occupy the middle, and gNB/cell populations spread below. It projects precomputed xyz coordinates onto Canvas 2D while preserving the layer hierarchy, with subtle orbit, zoom, health glow, typed edge colors, selection, and local filters. Floating controls preserve the canvas as the primary experience.
 
-Search uses the API and selecting a result focuses a one-hop neighborhood. Upstream and downstream actions request directed two-hop neighborhoods. Repeated expansion adds one hop, capped at six in the UI and eight in the engine. Escape clears the focused subgraph. Details show stable ID, class, market, criticality, health, measurements, and adjacent typed edges.
+Single-click opens inspection without changing context. Double-click—or the explicit details action—transitions to a card-based dependency workspace. That workspace groups a three-hop neighborhood into Core, provider edge, aggregation, gNB, and cell columns. Operators can reverse the semantic flow between Origin → Impact and Impact → Origin, click cards to highlight paths, and double-click a card to refocus. Escape returns to the same Atlas camera and selection. Details show stable ID, class, market, criticality, health, measurements, and adjacent typed edges.
 
 ## Visual semantics
 

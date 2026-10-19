@@ -14,7 +14,7 @@ npm test
 npm start
 ```
 
-Open [http://localhost:8000](http://localhost:8000). Search for `ATL-AGG-003`, `UPF`, `GNB-009`, or `CELL`. Switch between **Constellation** and **Left → Right**. Select an element, expand upstream or downstream dependencies, toggle relationship types, zoom with the wheel, and drag the constellation to rotate it.
+Open [http://localhost:8000](http://localhost:8000). Search for `ATL-AGG-003`, `UPF`, `GNB-009`, or `CELL`. Single-click an element for live details, then double-click it—or use **Open dependency view**—to trace its three-hop neighborhood. Switch between **Origin → Impact** and **Impact → Origin**, and press Escape to return to the unchanged Atlas overview.
 
 The checked-in synthetic snapshot is ready to run. `npm run generate` deterministically rebuilds it. Set `PORT=9000` to use another port.
 
@@ -22,8 +22,9 @@ The checked-in synthetic snapshot is ready to run. `npm run generate` determinis
 
 - 249 deterministic synthetic elements across ATL, BOS, and DEN: AMF, SMF, UPF, PE, aggregation routers, gNBs, and cells.
 - 327 physical, control-plane, carrying, dependency, and backup relationships. Directed semantics are preserved; physical links are bidirectional.
-- Canvas-rendered constellation and layer-constrained Core → Transport → RAN view.
-- Search, selection, typed-edge filters, upstream/downstream expansion up to six UI hops, and details/health panels.
+- Full-screen, top-to-bottom Atlas overview with Core, Transport, gNB, and cell layers arranged as a navigable hierarchy.
+- Single-click inspection and double-click transition into a card-based dependency workspace, with reversible Origin → Impact and Impact → Origin flow.
+- Search, selection, typed-edge filters, three-hop dependency neighborhoods, refocusing, and live details/health overlays.
 - Graph API for status, node search/detail, filtered neighborhoods, directed shortest paths, faults, health snapshots, and SSE health updates.
 - Immutable, versioned little-endian binary files for node render attributes, positions, edges, and forward/reverse CSR adjacency, plus JSON metadata and a checksummed manifest.
 - A GCS-shaped `current.json` pointer and immutable version directory; the local server exposes the same relative URL model.
